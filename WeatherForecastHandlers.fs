@@ -24,7 +24,7 @@ let get =
             |> Array.map (fun index ->
                 { Date = DateTime.Now.AddDays(float index)
                   TemperatureC = Random.Shared.Next(-20, 55)
-                  Summary = summaries.[Random.Shared.Next(summaries.Length)] })
+                  Description = summaries.[Random.Shared.Next(summaries.Length)] })
 
         json data next ctx
 

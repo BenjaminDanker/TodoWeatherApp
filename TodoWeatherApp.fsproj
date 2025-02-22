@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Models.fs" />
     <Compile Include="WeatherForecast.fs" />
     <Compile Include="WeatherForecastHandlers.fs" />
+    <Compile Include="Images.fs" />
+    <Compile Include="ImagesHandlers.fs" />
     <Compile Include="TodoHandlers.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

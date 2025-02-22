@@ -3,12 +3,6 @@ namespace TodoWeatherApp
 open System
 open FSharp.Data
 
-
-type WeatherForecast =
-    { Date: DateTime
-      TemperatureC: int
-      Summary: string }
-
 module WeatherService =
     open System.Net.Http
     open FSharp.Data // or use native HttpClient with JSON parser
@@ -30,5 +24,5 @@ module WeatherService =
         // For simplicity, pick the first hour
         let temp = data.Hourly.Temperature2m.[0]
         let now = System.DateTime.UtcNow
-        return { Date = now; TemperatureC = temp; Summary = "N/A" }
+        return { Date = now; TemperatureC = temp; Description = "N/A" }
     }

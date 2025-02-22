@@ -2,13 +2,6 @@ namespace TodoWeatherApp
 
 module TodoHandlers =
 
-    // Define TodoItem
-    type TodoItem = {
-        Id: int
-        Title: string
-        IsDone: bool
-    }
-
     // A mutable store for demonstration. In production, use a database.
     let private todos = System.Collections.Concurrent.ConcurrentBag<TodoItem>()
     let mutable currentId = 1
