@@ -1,0 +1,26 @@
+# Ignore build and output directories
+bin/
+obj/
+
+# Ignore user-specific files
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Ignore environment settings
+appsettings.Development.json
+secrets.json
+
+# Ignore compiled files
+*.dll
+*.exe
+*.pdb
+
+# Ignore log and temporary files
+*.log
+*.tmp
+
+# Ignore dependencies (optional, unless you want to track dependencies manually)
+packages/
+node_modules/
