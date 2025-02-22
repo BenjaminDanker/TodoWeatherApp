@@ -7,11 +7,13 @@
   <ItemGroup>
     <Compile Include="WeatherForecast.fs" />
     <Compile Include="WeatherForecastHandlers.fs" />
+    <Compile Include="TodoHandlers.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Giraffe" Version="6.0.0" />
+    <PackageReference Include="TaskBuilder.fs" Version="2.1.0" />
   </ItemGroup>
 
 </Project>

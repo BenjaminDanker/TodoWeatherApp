@@ -5,8 +5,23 @@ open Giraffe.EndpointRouting
 open Handlers
 open Microsoft.AspNetCore.Builder
 open Microsoft.Extensions.Hosting
+open TodoHandlers
 
-let endpoints = [ GET [ route "/weatherforecast" get ] ]
+let endpoints = [
+    GET [
+        route "/weatherforecast" get
+        route "/todos" getAllTodos
+    ]
+    POST [
+        route "/todos" addTodo
+    ]
+    PUT [
+        routef "/todos/%i" updateTodo
+    ]
+    DELETE [
+        routef "/todos/%i" deleteTodo
+    ]
+]
 
 [<EntryPoint>]
 let main args =
