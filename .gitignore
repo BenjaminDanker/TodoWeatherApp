@@ -24,3 +24,6 @@ secrets.json
 # Ignore dependencies (optional, unless you want to track dependencies manually)
 packages/
 node_modules/
+
+# Ignore secrets file
+secrets.json

@@ -1,17 +1,20 @@
 module TodoWeatherApp.Program
 
+open Microsoft.Extensions.Configuration
 open Giraffe
 open Giraffe.EndpointRouting
 open Handlers
 open Microsoft.AspNetCore.Builder
 open Microsoft.Extensions.Hosting
 open TodoHandlers
+open ImageHandlers
 
 let endpoints = [
     GET [
         route "/weatherforecast" get
         route "/todos" getAllTodos
         route "/weather" getWeatherHandler
+        route "/image" getImageHandler
     ]
     POST [
         route "/todos" addTodo

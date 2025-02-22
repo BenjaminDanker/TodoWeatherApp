@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Include="Models.fs" />
+    <Compile Include="SecretsHandler.fs" />
     <Compile Include="WeatherForecast.fs" />
     <Compile Include="WeatherForecastHandlers.fs" />
     <Compile Include="Images.fs" />
@@ -17,7 +18,14 @@
   <ItemGroup>
     <PackageReference Include="FSharp.Data" Version="6.4.1" />
     <PackageReference Include="Giraffe" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="TaskBuilder.fs" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="secret.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
