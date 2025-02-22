@@ -4,6 +4,7 @@ open System
 open Giraffe
 open Microsoft.AspNetCore.Http
 
+
 let summaries =
     [| "Freezing"
        "Bracing"
@@ -26,3 +27,11 @@ let get =
                   Summary = summaries.[Random.Shared.Next(summaries.Length)] })
 
         json data next ctx
+
+
+let getWeatherHandler : HttpHandler =
+    fun next ctx ->
+        task {
+            let! weather = WeatherService.fetchWeather 40.0 -74.0 |> Async.StartAsTask
+            return! json weather next ctx
+        }

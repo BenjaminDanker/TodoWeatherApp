@@ -53,6 +53,11 @@
               "version": "[9.0.100, )",
               "generatePathProperty": true
             },
+            "FSharp.Data": {
+              "target": "Package",
+              "version": "[6.4.1, )",
+              "generatePathProperty": true
+            },
             "Giraffe": {
               "target": "Package",
               "version": "[6.0.0, )",
@@ -60,7 +65,8 @@
             },
             "TaskBuilder.fs": {
               "target": "Package",
-              "version": "[2.1.0, )"
+              "version": "[2.1.0, )",
+              "generatePathProperty": true
             }
           },
           "imports": [

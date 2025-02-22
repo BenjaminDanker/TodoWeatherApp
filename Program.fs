@@ -11,6 +11,7 @@ let endpoints = [
     GET [
         route "/weatherforecast" get
         route "/todos" getAllTodos
+        route "/weather" getWeatherHandler
     ]
     POST [
         route "/todos" addTodo

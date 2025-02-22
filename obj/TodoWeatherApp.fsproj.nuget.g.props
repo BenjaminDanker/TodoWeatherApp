@@ -15,6 +15,8 @@
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">C:\Users\bsd20\.nuget\packages\fsharp.core\9.0.100</PkgFSharp_Core>
+    <PkgTaskBuilder_fs Condition=" '$(PkgTaskBuilder_fs)' == '' ">C:\Users\bsd20\.nuget\packages\taskbuilder.fs\2.1.0</PkgTaskBuilder_fs>
     <PkgGiraffe Condition=" '$(PkgGiraffe)' == '' ">C:\Users\bsd20\.nuget\packages\giraffe\6.0.0</PkgGiraffe>
+    <PkgFSharp_Data Condition=" '$(PkgFSharp_Data)' == '' ">C:\Users\bsd20\.nuget\packages\fsharp.data\6.4.1</PkgFSharp_Data>
   </PropertyGroup>
 </Project>
