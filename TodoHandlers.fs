@@ -6,6 +6,10 @@ module TodoHandlers =
     let private todos = System.Collections.Concurrent.ConcurrentBag<TodoItem>()
     let mutable currentId = 1
 
+    let defaultTodo = { Id = currentId; Title = "Get Milk"; IsDone = false }
+    todos.Add defaultTodo
+    currentId <- currentId + 1
+
     open System
     open System.Collections.Concurrent
     open Microsoft.AspNetCore.Http
