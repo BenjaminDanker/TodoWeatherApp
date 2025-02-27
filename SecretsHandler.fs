@@ -4,9 +4,31 @@ module SecretsLoader =
     open System.IO
     open Newtonsoft.Json.Linq
 
-    let loadUnsplashKey () =
-        // Ensure secret.json is copied to the output directory.
+    // Load and parse the JSON file once.
+    let private secrets =
         let secretJson = File.ReadAllText("secrets.json")
-        let jObj = JObject.Parse(secretJson)
-        // Access the Unsplash key dynamically:
-        jObj.["Unsplash"].["AccessKey"].ToString()
+        JObject.Parse(secretJson)
+
+    /// Retrieve the Unsplash Access Key.
+    let getUnsplashKey () =
+        secrets.["Unsplash"].["AccessKey"].ToString()
+
+    /// Retrieve the SMTP server for email.
+    let getEmailSmtpServer () =
+        secrets.["Email"].["SmtpServer"].ToString()
+
+    /// Retrieve the SMTP port as an integer.
+    let getEmailSmtpPort () =
+        secrets.["Email"].["SmtpPort"].ToString() |> int
+
+    /// Retrieve the Email user (sender).
+    let getEmailUser () =
+        secrets.["Email"].["User"].ToString()
+
+    /// Retrieve the Email password.
+    let getEmailPassword () =
+        secrets.["Email"].["Password"].ToString()
+
+    /// Retrieve the Email recipient.
+    let getEmailRecipient () =
+        secrets.["Email"].["Recipient"].ToString()

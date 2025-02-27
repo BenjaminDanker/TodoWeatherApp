@@ -1,28 +1,24 @@
 module TodoWeatherApp.Program
 
-open Microsoft.Extensions.Configuration
 open Giraffe
 open Giraffe.EndpointRouting
-open Handlers
 open Microsoft.AspNetCore.Builder
 open Microsoft.Extensions.Hosting
-open TodoHandlers
-open ImageHandlers
 
 let endpoints = [
     GET [
-        route "/weatherforecast" get
-        route "/todos" getAllTodos
-        route "/image" getImageHandler
+        route "/weatherforecast" Handlers.get
+        route "/todos" TodoHandlers.getAllTodos
+        route "/image" ImageHandlers.getImageHandler
     ]
     POST [
-        route "/todos" addTodo
+        route "/todos" TodoHandlers.addTodo
     ]
     PUT [
-        routef "/todos/%i" updateTodo
+        routef "/todos/%i" TodoHandlers.updateTodo
     ]
     DELETE [
-        routef "/todos/%i" deleteTodo
+        routef "/todos/%i" TodoHandlers.deleteTodo
     ]
 ]
 
@@ -37,6 +33,8 @@ let main args =
     app.UseHttpsRedirection() |> ignore
 
     app.UseRouting().UseGiraffe(endpoints) |> ignore
+
+    EmailService.scheduleDailyEmail(app.Services)
 
     app.Run()
 

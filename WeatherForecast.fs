@@ -11,7 +11,7 @@ module WeatherService =
     // If you prefer to do it manually, you can use System.Text.Json or Newtonsoft.Json
 
     [<Literal>]
-    let sampleJson = """ { "hourly": { "temperature_2m": [20, 21, 22] } } """
+    let sampleJson = """ { "hourly": { "temperature_2m": [ 0.1 ] } } """
     type OpenMeteoResponse = JsonProvider<sampleJson>
 
 
@@ -24,5 +24,5 @@ module WeatherService =
         // For simplicity, pick the first hour
         let temp = data.Hourly.Temperature2m.[0]
         let now = System.DateTime.UtcNow
-        return { Date = now; TemperatureC = temp; Description = "N/A" }
+        return { Date = now; TemperatureC = float temp; Description = "N/A" }
     }

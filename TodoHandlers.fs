@@ -12,6 +12,9 @@ module TodoHandlers =
     open Giraffe
     open FSharp.Control.Tasks.V2.ContextInsensitive // Needed for `task {}` support
 
+    let getTodos () =
+        todos |> Seq.toList
+
     let getAllTodos : HttpHandler =
         fun next ctx ->
             let allTodos = todos |> Seq.toList

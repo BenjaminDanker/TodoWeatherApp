@@ -8,7 +8,7 @@ module ImageHandlers =
     let getImageHandler : HttpHandler =
         fun next ctx ->
             task {
-                let unsplashKey = SecretsLoader.loadUnsplashKey()
+                let unsplashKey = SecretsLoader.getUnsplashKey()
                 printfn "Unsplash Key: %s" unsplashKey
                 let! image = ImageService.getRandomImage unsplashKey |> Async.StartAsTask
                 // Removed duplicate asynchronous call
