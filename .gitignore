@@ -10,7 +10,7 @@ obj/
 
 # Ignore environment settings
 appsettings.Development.json
-secrets.json
+appsettings.json
 
 # Ignore compiled files
 *.dll
@@ -24,6 +24,3 @@ secrets.json
 # Ignore dependencies (optional, unless you want to track dependencies manually)
 packages/
 node_modules/
-
-# Ignore secrets file
-secrets.json

@@ -3,14 +3,18 @@ namespace TodoWeatherApp
 module ImageHandlers =
     open Microsoft.AspNetCore.Http
     open Giraffe
-    open Microsoft.Extensions.Configuration
+    open Microsoft.Extensions.DependencyInjection
+    open TodoWeatherApp.ConfigLoader  // Import the config module
 
     let getImageHandler : HttpHandler =
         fun next ctx ->
             task {
-                let unsplashKey = SecretsLoader.getUnsplashKey()
+                // Retrieve configuration from DI
+                let config = ctx.RequestServices.GetService<AppConfig>()
+                let unsplashKey = config.UnSplash.Key
+
                 printfn "Unsplash Key: %s" unsplashKey
+
                 let! image = ImageService.getRandomImage unsplashKey |> Async.StartAsTask
-                // Removed duplicate asynchronous call
                 return! json image next ctx
             }
