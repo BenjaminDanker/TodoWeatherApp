@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Giraffe + Alpine.js</title>
+  <!-- Alpine.js from a CDN (no build steps needed) -->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 1rem;
+    }
+    .section {
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      padding: 1rem;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    img {
+      max-width: 300px;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Giraffe + Alpine.js Demo</h1>
+
+  <div
+    x-data="appData()"
+    x-init="init()"
+    class="section"
+  >
+    <!-- IMAGE SECTION -->
+    <h2>Image</h2>
+    <template x-if="imageUrl">
+      <img
+        :src="imageUrl"
+        :alt="imageDescription"
+      />
+    </template>
+    <p x-text="imageDescription"></p>
+  </div>
+
+  <div
+    x-data="appData()"
+    x-init="initTodos()"
+    class="section"
+  >
+    <!-- TODOS SECTION -->
+    <h2>Todos</h2>
+    <template x-if="todos.length === 0">
+      <p>No todos found.</p>
+    </template>
+    <ul>
+      <template x-for="todo in todos" :key="todo.id">
+        <li x-text="formatTodo(todo)"></li>
+      </template>
+    </ul>
+  </div>
+
+  <div
+    x-data="appData()"
+    x-init="initWeather()"
+    class="section"
+  >
+    <!-- WEATHER SECTION -->
+    <h2>Weather Forecast</h2>
+    <template x-if="forecasts.length === 0">
+      <p>No weather forecast data.</p>
+    </template>
+    <ul>
+      <template x-for="fc in forecasts" :key="fc.date">
+        <li x-text="formatForecast(fc)"></li>
+      </template>
+    </ul>
+  </div>
+
+  <script>
+    // Alpine.js "component" function
+    // This function returns an object that Alpine can use for data and methods
+    function appData() {
+      return {
+        // Data properties
+        imageUrl: '',
+        imageDescription: '',
+        todos: [],
+        forecasts: [],
+
+        // Called on x-init to fetch image + fill data
+        async init() {
+          // You could load them all together here if you prefer,
+          // but for demonstration, we'll do each section's init separately
+          await this.loadImage();
+        },
+
+        // Called on x-init for the "Todos" section
+        async initTodos() {
+          await this.loadTodos();
+        },
+
+        // Called on x-init for the "Weather" section
+        async initWeather() {
+          await this.loadWeather();
+        },
+
+        // Methods to fetch data
+        async loadImage() {
+          try {
+            const response = await fetch('/image');
+            if (!response.ok) throw new Error(`Error fetching /image: ${response.statusText}`);
+            const data = await response.json();
+            this.imageUrl = data.url;
+            this.imageDescription = data.description;
+          } catch (err) {
+            console.error(err);
+          }
+        },
+
+        async loadTodos() {
+          try {
+            const response = await fetch('/todos');
+            if (!response.ok) throw new Error(`Error fetching /todos: ${response.statusText}`);
+            this.todos = await response.json();
+          } catch (err) {
+            console.error(err);
+          }
+        },
+
+        async loadWeather() {
+          try {
+            const response = await fetch('/weatherforecast');
+            if (!response.ok) throw new Error(`Error fetching /weatherforecast: ${response.statusText}`);
+            this.forecasts = await response.json();
+          } catch (err) {
+            console.error(err);
+          }
+        },
+
+        // Helper methods for display
+        formatTodo(todo) {
+          return `${todo.id}: ${todo.title} [${todo.completed ? "done" : "not finished"}]`;
+        },
+
+        formatForecast(fc) {
+          // e.g. "Date: 2025-02-27T08:20:32, Temp: -20.0°C, Desc: Warm"
+          return `Date: ${fc.date}, Temp: ${fc.temperatureC}°C, Desc: ${fc.description}`;
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

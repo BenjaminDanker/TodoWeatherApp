@@ -28,16 +28,23 @@ let endpoints = [
 let main args =
     let builder = WebApplication.CreateBuilder(args)
 
-    // Load configuration from appsettings.json
+    // Load config, add services, etc.
     let config = loadConfiguration builder.Configuration
-
-    // Register AppConfig as a singleton
     builder.Services.AddSingleton(config) |> ignore
     builder.Services.AddGiraffe() |> ignore
 
     let app = builder.Build()
 
+    // 1. Automatically serve index.html if users hit "/"
+    app.UseDefaultFiles() |> ignore
+
+    // 2. Serve static files from 'wwwroot'
+    app.UseStaticFiles() |> ignore
+
+    // 3. Other middlewares
     app.UseHttpsRedirection() |> ignore
+
+    // 4. Giraffe routing (API endpoints, etc.)
     app.UseRouting().UseGiraffe(endpoints) |> ignore
 
     EmailService.scheduleDailyEmail(app.Services)
