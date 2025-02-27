@@ -13,7 +13,6 @@ let endpoints = [
     GET [
         route "/weatherforecast" get
         route "/todos" getAllTodos
-        route "/weather" getWeatherHandler
         route "/image" getImageHandler
     ]
     POST [
