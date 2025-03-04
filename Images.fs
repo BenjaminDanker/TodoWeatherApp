@@ -2,7 +2,6 @@ namespace TodoWeatherApp
 
 module ImageService =
     open System.Net.Http
-    open FSharp.Data // or use your preferred JSON library
 
     [<Literal>]
     let sampleJson = """
@@ -20,7 +19,7 @@ module ImageService =
         let! response = httpClient.GetStringAsync("https://api.unsplash.com/photos/random") |> Async.AwaitTask
         let data = UnsplashResponse.Parse(response)
         return {
-            Url = data.Urls.Regular
+            Url = data.Urls.Regular // error but works??
             Description =
                 if System.String.IsNullOrWhiteSpace(data.AltDescription) then
                     "An Unsplash image"

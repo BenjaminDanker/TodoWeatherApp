@@ -10,9 +10,6 @@ module TodoHandlers =
     todos.Add defaultTodo
     currentId <- currentId + 1
 
-    open System
-    open System.Collections.Concurrent
-    open Microsoft.AspNetCore.Http
     open Giraffe
     open FSharp.Control.Tasks.V2.ContextInsensitive // Needed for `task {}` support
 

@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("TodoWeatherApp")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f1f6dbfe0f4d13cd8aec12aea4461049c11cdca4")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d20bc240ca20de744691b352ecc1342f8dd598f")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("TodoWeatherApp")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("TodoWeatherApp")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

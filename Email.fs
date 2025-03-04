@@ -6,7 +6,6 @@ module EmailService =
     open System
     open System.Threading
     open Microsoft.Extensions.DependencyInjection
-    open TodoWeatherApp.ConfigLoader
 
     let sendEmail (config: MailGunConfig) (toAddress: string) (subject: string) (body: string) =
         let message = new MimeMessage()
