@@ -5,15 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Config.fs" />
-    <Compile Include="Models.fs" />
-    <Compile Include="WeatherForecast.fs" />
-    <Compile Include="WeatherForecastHandlers.fs" />
-    <Compile Include="Images.fs" />
-    <Compile Include="ImagesHandlers.fs" />
-    <Compile Include="TodoHandlers.fs" />
-    <Compile Include="Email.fs" />
-    <Compile Include="Program.fs" />
+    <Compile Include="src/Config.fs" />
+    <Compile Include="src/Models/Models.fs" />
+    <Compile Include="src/Weather/WeatherForecast.fs" />
+    <Compile Include="src/Weather/WeatherForecastHandlers.fs" />
+    <Compile Include="src/Images/Images.fs" />
+    <Compile Include="src/Images/ImagesHandlers.fs" />
+    <Compile Include="src/Todo/TodoHandlers.fs" />
+    <Compile Include="src/Email/Email.fs" />
+    <Compile Include="src/Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
