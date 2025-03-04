@@ -9,7 +9,7 @@ open Microsoft.Extensions.DependencyInjection
 
 let endpoints = [
     GET [
-        route "/weatherforecast" Handlers.get
+        route "/weatherforecast" Handlers.getWeatherHandler
         route "/todos" TodoHandlers.getAllTodos
         route "/image" ImageHandlers.getImageHandler
     ]

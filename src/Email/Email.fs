@@ -39,7 +39,7 @@ module EmailService =
                 
         let emailBody =
             sprintf "Good morning!\n\nHere are your daily updates:\n\nTodos:\n%s\n\nWeather:\nDate: %A\nTemperature: %d°C\n\nImage:\nURL: %s\nDescription: %s"
-                todosText weather.Date (int weather.TemperatureC) image.Url image.Description
+                todosText weather.[0].Date (int weather.[0].TemperatureC) image.Url image.Description
 
         sendEmail config.MailGun config.MailGun.Recipient "Daily Updates" emailBody
 

@@ -9,7 +9,6 @@ type TodoItem = {
 type WeatherData = {
     Date: System.DateTime
     TemperatureC: float
-    Description: string
 }
 
 type ImageData = {

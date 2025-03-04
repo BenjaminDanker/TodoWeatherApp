@@ -6,6 +6,8 @@ module ImageHandlers =
 
     let getImageHandler : HttpHandler =
         fun next ctx ->
+            printfn "[INFO] Received request: GET /image"
+
             task {
                 // Retrieve configuration from DI
                 let config = ctx.RequestServices.GetService<AppConfig>()

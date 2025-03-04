@@ -19,7 +19,7 @@ module ImageService =
         let! response = httpClient.GetStringAsync("https://api.unsplash.com/photos/random") |> Async.AwaitTask
         let data = UnsplashResponse.Parse(response)
         return {
-            Url = data.Urls.Regular // error but works??
+            Url = data.Urls.Regular
             Description =
                 if System.String.IsNullOrWhiteSpace(data.AltDescription) then
                     "An Unsplash image"

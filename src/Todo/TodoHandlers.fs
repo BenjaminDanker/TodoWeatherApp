@@ -18,11 +18,15 @@ module TodoHandlers =
 
     let getAllTodos : HttpHandler =
         fun next ctx ->
+            printfn "[INFO] Received request: GET /todos"
+
             let allTodos = todos |> Seq.toList
             json allTodos next ctx
 
     let addTodo : HttpHandler =
         fun next ctx ->
+            printfn "[INFO] Received request: POST /todos"
+
             task {
                 let! newTodo = ctx.BindJsonAsync<TodoItem>()
                 let todoWithId = { newTodo with Id = currentId }
@@ -33,6 +37,8 @@ module TodoHandlers =
 
     let updateTodo (id: int) : HttpHandler =
         fun next ctx ->
+            printfn $"[INFO] Received request: PUT /todos/{id}"
+
             task {
                 let! updated = ctx.BindJsonAsync<TodoItem>()
                 // In-memory update – typically you'd handle concurrency, etc.
@@ -48,6 +54,8 @@ module TodoHandlers =
 
     let deleteTodo (id: int) : HttpHandler =
         fun next ctx ->
+            printfn $"[INFO] Received request: DELETE /todos/{id}"
+
             task {
                 let existing = todos |> Seq.tryFind (fun t -> t.Id = id)
                 match existing with
