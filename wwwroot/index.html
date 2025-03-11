@@ -46,12 +46,21 @@
   <!-- TODOS SECTION -->
   <div x-data="todosData()" x-init="initTodos()" class="section">
     <h2>Todos</h2>
+    <input type="text" id="addTodoInput" placeholder="Enter todo title" />
+    <input type="checkbox" id="addTodoCheckbox" />
+    <button type="submit" onclick="addTodos()">Add Todo</button>
     <template x-if="todos.length === 0">
       <p>No todos found.</p>
     </template>
     <ul>
-      <template x-for="todo in todos" :key="todo.id">
-        <li x-text="formatTodo(todo)"></li>
+      <template x-for="(todo, index) in todos" :key="todo.id + '-' + index">
+        <li>
+          <span x-text="formatTodo(todo)"></span>
+          <!-- Button to toggle the IsDone status -->
+          <button @click="toggleTodo(todo)">Toggle</button>
+          <!-- Button to delete the todo -->
+          <button @click="deleteTodo(todo)">Delete</button>
+        </li>
       </template>
     </ul>
   </div>
@@ -92,24 +101,80 @@
       }
     }
 
+    async function addTodos() {
+      try {
+        const response = await fetch('/todos', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            title: document.getElementById('addTodoInput').value,
+            IsDone: document.getElementById('addTodoCheckbox').checked
+          })
+        });
+        if (!response.ok) throw new Error(`Error fetching /todos: ${response.statusText}`);
+        totext = await response.json();
+        console.log("todos: ", this.todos);
+
+        // Dispatch custom event after successful addition.
+        window.dispatchEvent(new CustomEvent('todos-updated'));
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
     // Component for handling Todos data
     function todosData() {
       return {
         todos: [],
         initTodos() {
           this.loadTodos();
+          // Listen for the custom event and call loadTodos.
+          window.addEventListener('todos-updated', () => this.loadTodos());
         },
         async loadTodos() {
           try {
             const response = await fetch('/todos');
             if (!response.ok) throw new Error(`Error fetching /todos: ${response.statusText}`);
             this.todos = await response.json();
+            console.log("todos: ", this.todos);
           } catch (err) {
             console.error(err);
           }
         },
         formatTodo(todo) {
-          return `${todo.id}: ${todo.title} [${todo.completed ? "done" : "not finished"}]`;
+          console.log("todo: ", todo.isDone);
+          return `${todo.id}: ${todo.title} [${todo.isDone ? "done" : "not finished"}]`;
+        },
+        async toggleTodo(todo) {
+          // Create an updated copy of the todo, toggling the IsDone flag.
+          const updatedTodo = { ...todo, IsDone: !todo.IsDone };
+          try {
+            const response = await fetch(`/todos/${todo.id}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(updatedTodo)
+            });
+            if (!response.ok) throw new Error(`Error updating todo: ${response.statusText}`);
+            const updated = await response.json();
+            console.log("Updated todo:", updated);
+            this.loadTodos();
+          } catch (err) {
+            console.error(err);
+          }
+        },
+        async deleteTodo(todo) {
+          try {
+            const response = await fetch(`/todos/${todo.id}`, {
+              method: 'DELETE'
+            });
+            if (!response.ok) throw new Error(`Error deleting todo: ${response.statusText}`);
+            console.log(`Deleted todo ${todo.id}`);
+            this.loadTodos();
+          } catch (err) {
+            console.error(err);
+          }
         }
       }
     }

@@ -15,7 +15,7 @@
           }
         }
       },
-      "FSharp.Core/9.0.100": {
+      "FSharp.Core/9.0.101": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/FSharp.Core.dll": {
@@ -1784,15 +1784,15 @@
         "packageIcon.png"
       ]
     },
-    "FSharp.Core/9.0.100": {
-      "sha512": "ye8yagHGsH08H2Twno5GRWkSbrMtxK/SWiHuPcF+3nODpW65/VJ8RO0aWxp8n9+KQbmahg90wAEL3TEXjF0r6A==",
+    "FSharp.Core/9.0.101": {
+      "sha512": "3/YR1SDWFA+Ojx9HiBwND+0UR8ZWoeZfkhD0DWAPCDdr/YI+CyFkArmMGzGSyPXeYtjG0sy0emzfyNwjt7zhig==",
       "type": "package",
-      "path": "fsharp.core/9.0.100",
+      "path": "fsharp.core/9.0.101",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "fsharp.core.9.0.100.nupkg.sha512",
+        "fsharp.core.9.0.101.nupkg.sha512",
         "fsharp.core.nuspec",
         "lib/netstandard2.0/FSharp.Core.dll",
         "lib/netstandard2.0/FSharp.Core.xml",
@@ -5684,7 +5684,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "FSharp.Core >= 9.0.100",
+      "FSharp.Core >= 9.0.101",
       "FSharp.Data >= 6.4.1",
       "Giraffe >= 6.0.0",
       "MailKit >= 4.10.0",
@@ -5693,23 +5693,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bsd20\\.nuget\\packages\\": {},
+    "C:\\Users\\silve\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Coding\\F#\\ProgLangConc\\TodoWeatherApp\\TodoWeatherApp.fsproj",
+      "projectUniqueName": "C:\\Silver Files\\Coding\\ProgLangConc\\project-1-web-app-BenjaminDanker\\TodoWeatherApp.fsproj",
       "projectName": "TodoWeatherApp",
-      "projectPath": "D:\\Coding\\F#\\ProgLangConc\\TodoWeatherApp\\TodoWeatherApp.fsproj",
-      "packagesPath": "C:\\Users\\bsd20\\.nuget\\packages\\",
-      "outputPath": "D:\\Coding\\F#\\ProgLangConc\\TodoWeatherApp\\obj\\",
+      "projectPath": "C:\\Silver Files\\Coding\\ProgLangConc\\project-1-web-app-BenjaminDanker\\TodoWeatherApp.fsproj",
+      "packagesPath": "C:\\Users\\silve\\.nuget\\packages\\",
+      "outputPath": "C:\\Silver Files\\Coding\\ProgLangConc\\project-1-web-app-BenjaminDanker\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\bsd20\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\silve\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5719,7 +5719,7 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "C:\\Program Files\\dotnet\\sdk\\9.0.101\\FSharp\\library-packs": {},
+        "C:\\Program Files\\dotnet\\sdk\\9.0.102\\FSharp\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5742,7 +5742,7 @@
           "FSharp.Core": {
             "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
             "target": "Package",
-            "version": "[9.0.100, )",
+            "version": "[9.0.101, )",
             "generatePathProperty": true
           },
           "FSharp.Data": {
@@ -5782,6 +5782,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.20, 7.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[7.0.20, 7.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.20, 7.0.20]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[7.0.20, 7.0.20]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -5790,7 +5808,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

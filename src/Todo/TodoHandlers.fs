@@ -6,9 +6,6 @@ module TodoHandlers =
     let private todos = System.Collections.Concurrent.ConcurrentBag<TodoItem>()
     let mutable currentId = 1
 
-    let defaultTodo = { Id = currentId; Title = "Get Milk"; IsDone = false }
-    todos.Add defaultTodo
-    currentId <- currentId + 1
 
     open Giraffe
     open FSharp.Control.Tasks.V2.ContextInsensitive // Needed for `task {}` support
@@ -29,9 +26,11 @@ module TodoHandlers =
 
             task {
                 let! newTodo = ctx.BindJsonAsync<TodoItem>()
+                printfn "[INFO] Received new todo: %A" newTodo
                 let todoWithId = { newTodo with Id = currentId }
                 currentId <- currentId + 1
                 todos.Add todoWithId
+                printfn "[INFO] All todos: %A" (todos |> Seq.toList)
                 return! json todoWithId next ctx
             }
 
@@ -45,9 +44,9 @@ module TodoHandlers =
                 let existing = todos |> Seq.tryFind (fun t -> t.Id = id)
                 match existing with
                 | Some old ->
-                    let mutable temp = old
-                    todos.TryTake(&temp) |> ignore
-                    todos.Add { updated with Id = id }
+                    let mutable temp = old;
+                    todos.TryTake(&temp) |> ignore;
+                    todos.Add { updated with Id = id };
                     return! json updated next ctx
                 | None -> return! RequestErrors.NOT_FOUND $"Todo with ID {id} not found" next ctx
             }
