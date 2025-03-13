@@ -11,7 +11,7 @@ let endpoints = [
     GET [
         route "/weatherforecast" Handlers.getWeatherHandler
         route "/todos" TodoHandlers.getAllTodos
-        route "/image" ImageHandlers.getImageHandler
+        //route "/image" ImageHandlers.getImageHandler
     ]
     POST [
         route "/todos" TodoHandlers.addTodo
